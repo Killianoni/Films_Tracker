@@ -9,9 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
 	@State private var selection: Int = 0
-	init() {
-		MovieTrackerTheme.shared.setupTheme()
-	}
+
 
     var body: some View {
 		TabView(selection: $selection) {
@@ -29,7 +27,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
-			.preferredColorScheme(.dark)
+			TabBarView()
     }
 }

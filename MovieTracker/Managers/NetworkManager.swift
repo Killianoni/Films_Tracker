@@ -1,15 +1,15 @@
 //
-//  DBManager.swift
+//  NetworkManager.swift
 //  MovieTracker
 //
-//  Created by Killian Adonaï on 09/03/2022.
+//  Created by Killian Adonaï on 23/03/2022.
 //
 
-import CoreData
 import Foundation
+import CoreData
 
-struct DBManager {
-	static let shared = DBManager()
+struct NetworkManager {
+	static let shared = NetworkManager()
 
 	let container: NSPersistentContainer
 
@@ -26,3 +26,4 @@ struct DBManager {
 		})
 	}
 }
+

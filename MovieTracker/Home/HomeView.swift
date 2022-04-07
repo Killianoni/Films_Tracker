@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct HomeView: View {
-	private let myURL = "https://api.lorem.space/image/movie?w=140&h=180"
+	@ObservedObject private var vm = ViewModel()
 	var body: some View {
 		ZStack {
-			Color(UIColor(white: 0.1, alpha: 1))
+			Color(UIColor(white: 0.05, alpha: 1))
 				.edgesIgnoringSafeArea(.all)
 			ScrollView {
 				
 				VStack(alignment: .leading) {
-					Text("Populaires :")
+					
+					Text("Populaires")
+						.fontWeight(.bold)
 						.padding(.leading)
 						.font(.largeTitle)
+					
 					ScrollView(.horizontal, showsIndicators: false) {
+						
 						HStack(alignment: .center, spacing: 15) {
+							
 							ForEach(0..<8) { _ in
 								Button {
 									print("")
 								} label: {
-									AsyncImage(url: URL(string: myURL))
-										.frame(width: 140, height: 180)
+									//AsyncImage(url: URL(string: myURL))
+									//.frame(width: 140, height: 180)
 								}
 								.cornerRadius(10)
 							}
@@ -34,17 +39,21 @@ struct HomeView: View {
 						.padding(.leading)
 					}
 					
-					Text("Meilleures notes :")
+					Text("Mieux notés")
+						.fontWeight(.bold)
 						.padding(.leading)
 						.font(.largeTitle)
+					
 					ScrollView(.horizontal, showsIndicators: false) {
+						
 						HStack(alignment: .center, spacing: 15) {
+							
 							ForEach(0..<8) { _ in
 								Button {
 									print("")
 								} label: {
-									AsyncImage(url: URL(string: myURL))
-										.frame(width: 140, height: 180)
+									//AsyncImage(url: URL(string: myURL))
+									//.frame(width: 140, height: 180)
 								}
 								.cornerRadius(10)
 							}
@@ -52,17 +61,21 @@ struct HomeView: View {
 						.padding(.leading)
 					}
 					
-					Text("A venir :")
+					Text("A venir")
+						.fontWeight(.bold)
 						.padding(.leading)
 						.font(.largeTitle)
+					
 					ScrollView(.horizontal, showsIndicators: false) {
+						
 						HStack(alignment: .center, spacing: 15) {
+							
 							ForEach(0..<8) { _ in
 								Button {
 									print("")
 								} label: {
-									AsyncImage(url: URL(string: myURL))
-										.frame(width: 140, height: 180)
+									//AsyncImage(url: URL(string: myURL))
+									//.frame(width: 140, height: 180)
 								}
 								.cornerRadius(10)
 								.padding(.bottom, 20)
@@ -73,7 +86,7 @@ struct HomeView: View {
 				}
 			}
 			.padding(.top, 40)
-		}
+		}.onAppear { vm.fetchPopular() }
 	}
 }
 
