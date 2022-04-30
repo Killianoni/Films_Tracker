@@ -14,7 +14,7 @@ struct DBManager {
 	let container: NSPersistentContainer
 
 	init(inMemory: Bool = false) {
-		container = NSPersistentContainer(name: "SongsLive")
+		container = NSPersistentContainer(name: "MovieTracker")
 		if inMemory {
 			container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
 		}

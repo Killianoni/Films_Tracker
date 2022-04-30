@@ -4,15 +4,13 @@
     <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
         <attribute name="adult" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="backdrop" optional="YES" attributeType="String"/>
-        <attribute name="genres" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
         <attribute name="poster" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="runtime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="status" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
-        <attribute name="voteAverage" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="voteAverage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="voteCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Serie" representedClassName="Serie" syncable="YES" codeGenerationType="class"/>
@@ -22,9 +20,9 @@
         <attribute name="pseudo" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="209"/>
-        <element name="User" positionX="-36" positionY="117" width="128" height="74"/>
-        <element name="Serie" positionX="-18" positionY="99" width="128" height="29"/>
         <element name="Genres" positionX="0" positionY="108" width="128" height="29"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="179"/>
+        <element name="Serie" positionX="-18" positionY="99" width="128" height="29"/>
+        <element name="User" positionX="-36" positionY="117" width="128" height="74"/>
     </elements>
 </model>

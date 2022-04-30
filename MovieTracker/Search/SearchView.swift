@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct SearchView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	@State private var searchText = ""
+	
+	var body: some View {
+		NavigationView {
+			Text("")
+		}
+		.searchable(text: $searchText)
+		.navigationTitle("Search")
+	}
 }
 
 struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
+	static var previews: some View {
+		SearchView()
+	}
 }
