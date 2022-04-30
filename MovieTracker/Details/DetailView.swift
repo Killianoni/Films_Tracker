@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct DetailView: View {
+	@ObservedObject private var vm = DetailViewModel()
+	var id: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView()
+		ZStack {
+			AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(vm.movie?.posterPath ?? "Unknown")"), scale: 2) { image in
+				image
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+				
+			} placeholder: {
+				ProgressView()
+					.progressViewStyle(.circular)
+			}
+			.frame(width: 140, height: 200)
+			Text(vm.movie?.title ?? "Unknown")
+		}.onAppear {
+			vm.getMovie(id)
+		}
     }
 }
