@@ -24,6 +24,7 @@
 		1D551B0127FDBA9000B23E17 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D551B0027FDBA9000B23E17 /* SearchViewModel.swift */; };
 		1D551B0327FDBAA100B23E17 /* MyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D551B0227FDBAA100B23E17 /* MyListViewModel.swift */; };
 		1D551B0527FDBABB00B23E17 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D551B0427FDBABB00B23E17 /* ProfileViewModel.swift */; };
+		1DD2C985282054AF006F2503 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = 1DD2C984282054AF006F2503 /* ExpandableText */; };
 		1DF4A0F8281DB8650020395E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0F7281DB8650020395E /* DetailViewModel.swift */; };
 		1DF4A0FA281DB86F0020395E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0F9281DB86F0020395E /* DetailView.swift */; };
 		1DF4A0FC281DE8570020395E /* SingleMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0FB281DE8570020395E /* SingleMovieModel.swift */; };
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD2C985282054AF006F2503 /* ExpandableText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +205,9 @@
 			dependencies = (
 			);
 			name = MovieTracker;
+			packageProductDependencies = (
+				1DD2C984282054AF006F2503 /* ExpandableText */,
+			);
 			productName = MovieTracker;
 			productReference = 1D013D0227D8A19C00032343 /* MovieTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -231,6 +236,9 @@
 				Base,
 			);
 			mainGroup = 1D013CF927D8A19C00032343;
+			packageReferences = (
+				1DD2C983282054AF006F2503 /* XCRemoteSwiftPackageReference "ExpandableText" */,
+			);
 			productRefGroup = 1D013D0327D8A19C00032343 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -483,6 +491,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1DD2C983282054AF006F2503 /* XCRemoteSwiftPackageReference "ExpandableText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NuPlay/ExpandableText";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1DD2C984282054AF006F2503 /* ExpandableText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DD2C983282054AF006F2503 /* XCRemoteSwiftPackageReference "ExpandableText" */;
+			productName = ExpandableText;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1D013D1027D8A19E00032343 /* MovieTracker.xcdatamodeld */ = {

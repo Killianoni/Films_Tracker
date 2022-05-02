@@ -9,12 +9,16 @@ import Foundation
 
 class DetailViewModel: ObservableObject {
 	@Published var movie: SingleMovie?
+	@Published var title: String = ""
+	@Published var poster: String = ""
+	@Published var id: Int64 = 0
+	@Published var isFavorite: Bool = true
 
 	func getMovie(_ id: String) {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=70d695698e1725917ed1fa6d935de2e5&language=en-EN")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=70d695698e1725917ed1fa6d935de2e5&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
@@ -41,5 +45,15 @@ class DetailViewModel: ObservableObject {
 		}
 		
 		task.resume()
+	}
+	
+	func addFavs() {
+		let movieResult = DBManager.shared.addFavs(title: title, id: id, poster: poster, isFavorite: isFavorite)
+		switch movieResult {
+		case .success(let movie):
+			print("Successfully added \(movie)")
+		case .failure(let error):
+			print(error.localizedDescription)
+		}
 	}
 }

@@ -30,7 +30,6 @@ struct HomeView: View {
 							HStack(alignment: .center, spacing: 15) {
 								
 								ForEach(vm.popularMovies, id: \.id) { movie in
-									Text(String(movie.id))
 									NavigationLink(destination: DetailView(id: String(movie.id)),
 									label: {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
@@ -63,9 +62,8 @@ struct HomeView: View {
 							HStack(alignment: .center, spacing: 15) {
 								
 								ForEach(vm.upcomingMovies, id: \.id) { movie in
-									NavigationLink {
-										//
-									} label: {
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+									label: {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
@@ -76,7 +74,7 @@ struct HomeView: View {
 										}
 										.frame(width: 140, height: 200)
 										
-									}
+									})
 									.cornerRadius(10)
 								}
 							}
@@ -95,9 +93,8 @@ struct HomeView: View {
 							HStack(alignment: .center, spacing: 15) {
 								
 								ForEach(vm.topRatedMovies, id: \.id) { movie in
-									NavigationLink {
-										//
-									} label: {
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+									label: {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
@@ -108,7 +105,7 @@ struct HomeView: View {
 										}
 										.frame(width: 140, height: 200)
 										
-									}
+									})
 									.cornerRadius(10)
 									.padding(.bottom, 20)
 								}
