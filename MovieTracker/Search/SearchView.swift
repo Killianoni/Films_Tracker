@@ -12,10 +12,11 @@ struct SearchView: View {
 	
 	var body: some View {
 		NavigationView {
-			Text("")
+			Color(UIColor(white: 0.05, alpha: 1))
+				.edgesIgnoringSafeArea(.all)
+			Text(searchText)
 		}
 		.searchable(text: $searchText)
-		.navigationTitle("Search")
 	}
 }
 

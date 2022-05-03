@@ -27,11 +27,12 @@ struct MovieResultElement: Codable {
 	let adult: Bool?
 	let backdropPath: String
 	let genreIDS: [Int]?
-	let id: Int?
+	let id: Int
 	let overview: String?
 	let posterPath, releaseDate, title: String?
 	let voteAverage: Double?
 	let voteCount: Int?
+	let isFavorite: Bool?
 	
 	enum CodingKeys: String, CodingKey {
 		case adult
@@ -44,6 +45,7 @@ struct MovieResultElement: Codable {
 		case title
 		case voteAverage = "vote_average"
 		case voteCount = "vote_count"
+		case isFavorite
 	}
 }
 

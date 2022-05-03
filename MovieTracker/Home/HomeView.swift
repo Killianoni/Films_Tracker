@@ -11,116 +11,121 @@ struct HomeView: View {
 	@ObservedObject private var vm = HomeViewModel()
 	
 	var body: some View {
-		ZStack {
-			Color(UIColor(white: 0.05, alpha: 1))
-				.edgesIgnoringSafeArea(.all)
-			ScrollView {
-				
-				VStack(alignment: .leading) {
+		NavigationView {
+			ZStack {
+				Color(UIColor(white: 0.05, alpha: 1))
+					.edgesIgnoringSafeArea(.all)
+				ScrollView {
 					
-					Text("Populaires")
-						.font(.custom("Arial",size: 30, relativeTo: .headline))
-						.fontWeight(.bold)
-						.padding(.leading)
-						.font(.largeTitle)
-					
-					ScrollView(.horizontal, showsIndicators: false) {
+					VStack(alignment: .leading) {
 						
-						HStack(alignment: .center, spacing: 15) {
+						Text("A l'affiche")
+							.font(.custom("Arial",size: 25, relativeTo: .headline))
+							.fontWeight(.bold)
+							.padding(.leading)
+							.font(.largeTitle)
+						
+						ScrollView(.horizontal, showsIndicators: false) {
 							
-							ForEach(vm.popularMovies, id: \.id) { movie in
-								Button {
-									print("")
-								} label: {
-									AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
-										image
-											.resizable()
-											.aspectRatio(contentMode: .fit)
+							HStack(alignment: .center, spacing: 15) {
+								
+								ForEach(vm.nowPlayingMovies, id: \.id) { movie in
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+												   label: {
+										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
+											image
+												.resizable()
+												.aspectRatio(contentMode: .fit)
+										} placeholder: {
+											ProgressView()
+												.progressViewStyle(.circular)
+										}
+										.frame(width: 140, height: 200)
+										
+									})
+									.cornerRadius(10)
+								}
+							}
+							.padding(.leading)
+						}
+						.padding(.bottom)
+						
+						Text("Populaires")
+							.font(.custom("Arial",size: 25, relativeTo: .headline))
+							.fontWeight(.bold)
+							.padding(.leading)
+							.font(.largeTitle)
+						
+						ScrollView(.horizontal, showsIndicators: false) {
+							
+							HStack(alignment: .center, spacing: 15) {
+								
+								ForEach(vm.popularMovies, id: \.id) { movie in
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+												   label: {
+										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
+											image
+												.resizable()
+												.aspectRatio(contentMode: .fit)
 											
-									} placeholder: {
-										ProgressView()
-											.progressViewStyle(.circular)
-									}
-									.frame(width: 140, height: 200)
+										} placeholder: {
+											ProgressView()
+												.progressViewStyle(.circular)
+										}
+										.frame(width: 140, height: 200)
+									})
+									.cornerRadius(10)
 								}
-								.cornerRadius(10)
 							}
-						}
-						.padding(.leading)
-
-					}
-					
-					Text("Mieux notés")
-						.font(.custom("Arial",size: 30, relativeTo: .headline))
-						.fontWeight(.bold)
-						.padding(.leading)
-						.font(.largeTitle)
-					
-					ScrollView(.horizontal, showsIndicators: false) {
-						
-						HStack(alignment: .center, spacing: 15) {
+							.padding(.leading)
 							
-							ForEach(vm.topRatedMovies, id: \.id) { movie in
-								Button {
-									print("")
-								} label: {
-									AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
-										image
-											.resizable()
-											.aspectRatio(contentMode: .fit)
-									} placeholder: {
-										ProgressView()
-											.progressViewStyle(.circular)
-									}
-									.frame(width: 140, height: 200)
-									
-								}
-								.cornerRadius(10)
-							}
 						}
-						.padding(.leading)
-					}
-					
-					Text("Prochainement")
-						.font(.custom("Arial",size: 30, relativeTo: .headline))
-						.fontWeight(.bold)
-						.padding(.leading)
-						.font(.largeTitle)
-					
-					ScrollView(.horizontal, showsIndicators: false) {
+						.padding(.bottom)
 						
-						HStack(alignment: .center, spacing: 15) {
+						Text("Mieux notés")
+							.font(.custom("Arial",size: 25, relativeTo: .headline))
+							.fontWeight(.bold)
+							.padding(.leading)
+							.font(.largeTitle)
+						
+						ScrollView(.horizontal, showsIndicators: false) {
 							
-							ForEach(vm.upcomingMovies, id: \.id) { movie in
-								Button {
-									print("")
-								} label: {
-									AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
-										image
-											.resizable()
-											.aspectRatio(contentMode: .fit)
-									} placeholder: {
-										ProgressView()
-											.progressViewStyle(.circular)
-									}
-									.frame(width: 140, height: 200)
-									
+							HStack(alignment: .center, spacing: 15) {
+								
+								ForEach(vm.topRatedMovies, id: \.id) { movie in
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+												   label: {
+										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
+											image
+												.resizable()
+												.aspectRatio(contentMode: .fit)
+										} placeholder: {
+											ProgressView()
+												.progressViewStyle(.circular)
+										}
+										.frame(width: 140, height: 200)
+										
+									})
+									.cornerRadius(10)
+									.padding(.bottom, 20)
 								}
-								.cornerRadius(10)
-								.padding(.bottom, 20)
 							}
+							.padding(.leading)
 						}
-						.padding(.leading)
 					}
 				}
+				.padding(.top, 40)
 			}
-			.padding(.top, 40)
+			.onAppear {
+				vm.fetchPopular()
+				vm.fetchTopRated()
+				vm.fetchNowplaying()
+			}
+			.navigationBarTitle("", displayMode: .inline)
+			.navigationBarHidden(true)
+			.navigationBarBackButtonHidden(true)
 		}
-		.onAppear {
-			vm.fetchPopular()
-			vm.fetchTopRated()
-			vm.fetchUpcoming()
-		}
+		
 	}
 }
 

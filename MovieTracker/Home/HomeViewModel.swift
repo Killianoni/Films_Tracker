@@ -7,21 +7,19 @@
 
 import Foundation
 
-
 class HomeViewModel: ObservableObject {
 	
 	@Published var popularMovies = [MovieResultElement]()
 	@Published var topRatedMovies = [MovieResultElement]()
-	@Published var upcomingMovies = [MovieResultElement]()
+	@Published var nowPlayingMovies = [MovieResultElement]()
 	
 	init() {
 		fetchPopular()
 		fetchTopRated()
-		fetchUpcoming()
+		fetchNowplaying()
 	}
 	
 	func fetchPopular() {
-		// Network manager . fetchPopular
 		
 		let session = URLSession.shared
 		
@@ -55,7 +53,6 @@ class HomeViewModel: ObservableObject {
 	}
 	
 	func fetchTopRated() {
-		// Network manager . fetchPopular
 		
 		let session = URLSession.shared
 		
@@ -88,12 +85,11 @@ class HomeViewModel: ObservableObject {
 		task.resume()
 	}
 	
-	func fetchUpcoming() {
-		// Network manager . fetchPopular
+	func fetchNowplaying() {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=5a47d30884f0c53a62a7eaa4f26a6973&language=fr-FR")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=5a47d30884f0c53a62a7eaa4f26a6973&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
@@ -109,7 +105,7 @@ class HomeViewModel: ObservableObject {
 				jsonDecoder.dateDecodingStrategy = .secondsSince1970
 				do {
 					let movieResults = try jsonDecoder.decode(MovieResult.self, from: data)
-					self.upcomingMovies = movieResults.results
+					self.nowPlayingMovies = movieResults.results
 				} catch {
 					print(error.localizedDescription)
 				}
