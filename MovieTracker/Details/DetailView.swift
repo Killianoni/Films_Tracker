@@ -47,7 +47,7 @@ struct DetailView: View {
 //					}.padding(.bottom)
 					
 					HStack {
-						Text(vm.movie?.overview ?? "Loading...")
+						Text(vm.movie?.overview ?? "Unknown")
 							.padding([.trailing,.leading])
 							.lineLimit(isExpanded ? nil : 4)
 										.overlay(

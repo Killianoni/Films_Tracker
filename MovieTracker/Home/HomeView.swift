@@ -98,7 +98,7 @@ struct HomeView: View {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
-												.aspectRatio(contentMode: .fit)
+												.aspectRatio(contentMode: .fill)
 										} placeholder: {
 											ProgressView()
 												.progressViewStyle(.circular)

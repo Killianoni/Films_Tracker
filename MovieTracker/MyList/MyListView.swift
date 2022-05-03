@@ -21,7 +21,7 @@ struct MyListView: View {
 					.edgesIgnoringSafeArea(.all)
 				ScrollView {
 					VStack {
-						LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
+						LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
 							ForEach(vm.favMovies) { movie in
 								Button {
 									vm.deleteSong(with: movie.objectID)
@@ -34,7 +34,7 @@ struct MyListView: View {
 										ProgressView()
 											.progressViewStyle(.circular)
 									}
-									.frame(width: 100, height: 170)
+									.frame(width: 130, height: 160)
 
 								}
 								.cornerRadius(10)
