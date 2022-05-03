@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ExpandableText
+import CoreData
 
 struct DetailView: View {
 	@ObservedObject private var vm = DetailViewModel()
@@ -40,6 +40,12 @@ struct DetailView: View {
 							.padding(.trailing, 20)
 					}.padding(.bottom)
 					
+//					HStack {
+//						ForEach(vm.movie?.genres) { genre in
+//							Text(genre.title)
+//						}
+//					}.padding(.bottom)
+					
 					HStack {
 						Text(vm.movie?.overview ?? "Loading...")
 							.padding([.trailing,.leading])
@@ -69,15 +75,7 @@ struct DetailView: View {
 					}.padding(.bottom)
 					
 					HStack {
-						Button {
-							//
-						} label: {
-							Text("Vu")
-						}
-						.padding(.leading, 20)
-						
-						Spacer()
-						
+			
 						Button {
 							vm.title = vm.movie?.title ?? "Unknown"
 							vm.poster = vm.movie?.posterPath ?? "Unknown"
@@ -85,16 +83,24 @@ struct DetailView: View {
 							vm.addFavs()
 						} label: {
 							Text("A voir")
+								.fontWeight(.bold)
+								.padding(8)
+								.foregroundColor(.white)
+								.background(Color.red)
+								.cornerRadius(10)
 						}
 						
-						Spacer()
+//						Button {
+//							vm.deleteSong(with: NSManagedObjectID(vm.movie?.id))
+//						} label: {
+//							Text("Delete")
+//								.fontWeight(.bold)
+//								.padding(8)
+//								.foregroundColor(.white)
+//								.background(Color.red)
+//								.cornerRadius(10)
+//						}
 						
-						Button {
-							//
-						} label: {
-							Text("J'aime")
-						}
-						.padding(.trailing, 20)
 					}
 					
 					
@@ -104,12 +110,13 @@ struct DetailView: View {
 			.edgesIgnoringSafeArea(.all)
 		}.onAppear {
 			vm.getMovie(id)
+			vm.fetchMovies()
 		   }
 	}
 	
 	struct DetailView_Previews: PreviewProvider {
 		static var previews: some View {
-			DetailView(id: "103")
+			DetailView(id: "664413")
 		}
 	}
 	

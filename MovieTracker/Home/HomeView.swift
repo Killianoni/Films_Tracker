@@ -19,6 +19,37 @@ struct HomeView: View {
 					
 					VStack(alignment: .leading) {
 						
+						Text("A l'affiche")
+							.font(.custom("Arial",size: 25, relativeTo: .headline))
+							.fontWeight(.bold)
+							.padding(.leading)
+							.font(.largeTitle)
+						
+						ScrollView(.horizontal, showsIndicators: false) {
+							
+							HStack(alignment: .center, spacing: 15) {
+								
+								ForEach(vm.nowPlayingMovies, id: \.id) { movie in
+									NavigationLink(destination: DetailView(id: String(movie.id)),
+												   label: {
+										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
+											image
+												.resizable()
+												.aspectRatio(contentMode: .fit)
+										} placeholder: {
+											ProgressView()
+												.progressViewStyle(.circular)
+										}
+										.frame(width: 140, height: 200)
+										
+									})
+									.cornerRadius(10)
+								}
+							}
+							.padding(.leading)
+						}
+						.padding(.bottom)
+						
 						Text("Populaires")
 							.font(.custom("Arial",size: 25, relativeTo: .headline))
 							.fontWeight(.bold)
@@ -31,7 +62,7 @@ struct HomeView: View {
 								
 								ForEach(vm.popularMovies, id: \.id) { movie in
 									NavigationLink(destination: DetailView(id: String(movie.id)),
-									label: {
+												   label: {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
@@ -51,37 +82,6 @@ struct HomeView: View {
 						}
 						.padding(.bottom)
 						
-						Text("Prochainement")
-							.font(.custom("Arial",size: 25, relativeTo: .headline))
-							.fontWeight(.bold)
-							.padding(.leading)
-							.font(.largeTitle)
-						
-						ScrollView(.horizontal, showsIndicators: false) {
-							
-							HStack(alignment: .center, spacing: 15) {
-								
-								ForEach(vm.upcomingMovies, id: \.id) { movie in
-									NavigationLink(destination: DetailView(id: String(movie.id)),
-									label: {
-										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
-											image
-												.resizable()
-												.aspectRatio(contentMode: .fit)
-										} placeholder: {
-											ProgressView()
-												.progressViewStyle(.circular)
-										}
-										.frame(width: 140, height: 200)
-										
-									})
-									.cornerRadius(10)
-								}
-							}
-							.padding(.leading)
-						}
-						.padding(.bottom)
-						
 						Text("Mieux notés")
 							.font(.custom("Arial",size: 25, relativeTo: .headline))
 							.fontWeight(.bold)
@@ -94,7 +94,7 @@ struct HomeView: View {
 								
 								ForEach(vm.topRatedMovies, id: \.id) { movie in
 									NavigationLink(destination: DetailView(id: String(movie.id)),
-									label: {
+												   label: {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
@@ -119,7 +119,7 @@ struct HomeView: View {
 			.onAppear {
 				vm.fetchPopular()
 				vm.fetchTopRated()
-				vm.fetchUpcoming()
+				vm.fetchNowplaying()
 			}
 			.navigationBarTitle("", displayMode: .inline)
 			.navigationBarHidden(true)

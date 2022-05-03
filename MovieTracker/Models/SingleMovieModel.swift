@@ -11,7 +11,6 @@ import Foundation
 struct SingleMovie: Codable {
 	let adult: Bool?
 	let backdropPath: String?
-	let belongsToCollection: JSONNull?
 	let budget: Int?
 	let genres: [Genre]?
 	let homepage: String?
@@ -32,7 +31,6 @@ struct SingleMovie: Codable {
 	enum CodingKeys: String, CodingKey {
 		case adult
 		case backdropPath = "backdrop_path"
-		case belongsToCollection = "belongs_to_collection"
 		case budget, genres, homepage, id
 		case imdbID = "imdb_id"
 		case originalLanguage = "original_language"
@@ -88,32 +86,5 @@ struct SpokenLanguage: Codable {
 		case englishName = "english_name"
 		case iso639_1 = "iso_639_1"
 		case name
-	}
-}
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
-	public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-		return true
-	}
-
-	public var hashValue: Int {
-		return 0
-	}
-
-	public init() {}
-
-	public required init(from decoder: Decoder) throws {
-		let container = try decoder.singleValueContainer()
-		if !container.decodeNil() {
-			throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-		}
-	}
-
-	public func encode(to encoder: Encoder) throws {
-		var container = encoder.singleValueContainer()
-		try container.encodeNil()
 	}
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class DetailViewModel: ObservableObject {
 	@Published var movie: SingleMovie?
@@ -13,6 +14,7 @@ class DetailViewModel: ObservableObject {
 	@Published var poster: String = ""
 	@Published var id: Int64 = 0
 	@Published var isFavorite: Bool = true
+	@Published var favMovies = [Movie]()
 
 	func getMovie(_ id: String) {
 		
@@ -54,6 +56,23 @@ class DetailViewModel: ObservableObject {
 			print("Successfully added \(movie)")
 		case .failure(let error):
 			print(error.localizedDescription)
+		}
+	}
+	
+	func deleteSong(with deleteMovieId: NSManagedObjectID) {
+		let res = DBManager.shared.deleteMovie(by: deleteMovieId)
+		switch res {
+		case .success:
+			favMovies = favMovies.filter { $0.objectID  != deleteMovieId }
+		case .failure: return
+		}
+	}
+	
+	func fetchMovies() {
+		let moviesResult = DBManager.shared.getMovies(shouldFetchOnlyFavs: true)
+		switch moviesResult {
+		case .failure:               return
+		case .success(let movies):   self.favMovies = movies
 		}
 	}
 }

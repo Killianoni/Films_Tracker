@@ -26,34 +26,11 @@ struct DBManager {
 		})
 	}
 	
-//	func addWatchLater(
-//		name: String,
-//		muscle1: String,
-//		muscle2: String,
-//		exerciceId: NSManagedObjectID? = nil
-//	) -> Result<Exercice, Error> {
-//
-//		let context = container.viewContext
-//		let exercice = Exercice(entity: Exercice.entity(),
-//						insertInto: DBManager.shared.container.viewContext)
-//		exercice.name = name
-//		exercice.muscle1 = muscle1
-//		exercice.muscle2 = muscle2
-//
-//		do {
-//			try context.save()
-//			return .success(exercice)
-//		} catch {
-//			return .failure(error)
-//		}
-//	}
-	
 	func addFavs(
 		title: String,
 		id: Int64,
 		poster: String,
 		isFavorite: Bool,
-		
 		MovieId: NSManagedObjectID? = nil
 	) -> Result<Movie, Error> {
 
@@ -73,25 +50,43 @@ struct DBManager {
 		}
 	}
 	
-//	func addSeen(
-//		name: String,
-//		muscle1: String,
-//		muscle2: String,
-//		exerciceId: NSManagedObjectID? = nil
-//	) -> Result<Exercice, Error> {
-//
+	func getMovies(shouldFetchOnlyFavs: Bool = false) -> Result<[Movie], Error> {
+		let fetchRequest = Movie.fetchRequest()
+		let descriptor: NSSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+		fetchRequest.sortDescriptors = [descriptor]
+		let predicate = NSPredicate(format: "isFavorite == true")
+
+		if shouldFetchOnlyFavs { fetchRequest.predicate = predicate }
+		let context = container.viewContext
+
+		do {
+			let movies = try context.fetch(fetchRequest)
+			return .success(movies)
+		} catch {
+			return .failure(error)
+		}
+	}
+	
+	@discardableResult
+	func deleteMovie(by id: NSManagedObjectID) -> Result<Void, Error> {
+		let context = container.viewContext
+		do {
+			let movie = try context.existingObject(with: id) as! Movie
+			context.delete(movie)
+			try context.save()
+			return .success(())
+		} catch {
+			return .failure(error)
+		}
+	}
+	
+//	func isExisting(with id: Int) -> Bool {
 //		let context = container.viewContext
-//		let exercice = Exercice(entity: Exercice.entity(),
-//						insertInto: DBManager.shared.container.viewContext)
-//		exercice.name = name
-//		exercice.muscle1 = muscle1
-//		exercice.muscle2 = muscle2
-//
 //		do {
-//			try context.save()
-//			return .success(exercice)
+//			let movie = try context.existingObject(with: id) as! Movie
+//			return true
 //		} catch {
-//			return .failure(error)
+//			return false
 //		}
 //	}
 }
