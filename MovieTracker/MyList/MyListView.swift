@@ -30,6 +30,7 @@ struct MyListView: View {
 										image
 											.resizable()
 											.aspectRatio(contentMode: .fit)
+											.cornerRadius(8)
 									} placeholder: {
 										ProgressView()
 											.progressViewStyle(.circular)
@@ -37,7 +38,6 @@ struct MyListView: View {
 									.frame(width: 130, height: 160)
 
 								}
-								.cornerRadius(10)
 							}
 						}
 						.padding(.bottom, 20)

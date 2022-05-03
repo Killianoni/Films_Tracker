@@ -99,14 +99,14 @@ struct HomeView: View {
 											image
 												.resizable()
 												.aspectRatio(contentMode: .fill)
+												.cornerRadius(8)
 										} placeholder: {
 											ProgressView()
 												.progressViewStyle(.circular)
 										}
-										.frame(width: 140, height: 200)
+										.frame(width: 160, height: 200)
 										
 									})
-									.cornerRadius(10)
 									.padding(.bottom, 20)
 								}
 							}
@@ -121,7 +121,7 @@ struct HomeView: View {
 				vm.fetchTopRated()
 				vm.fetchNowplaying()
 			}
-			.navigationBarTitle("", displayMode: .inline)
+			.navigationBarTitle("Home", displayMode: .inline)
 			.navigationBarHidden(true)
 			.navigationBarBackButtonHidden(true)
 		}
