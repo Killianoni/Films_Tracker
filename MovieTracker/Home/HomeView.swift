@@ -113,8 +113,10 @@ struct HomeView: View {
 							.padding(.leading)
 						}
 					}
+					.padding(.top, 40)
+					.padding(.bottom, 40)
 				}
-				.padding(.top, 40)
+//				.padding(.top, 40)
 			}
 			.onAppear {
 				vm.fetchPopular()

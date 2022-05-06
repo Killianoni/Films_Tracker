@@ -19,11 +19,13 @@ class HomeViewModel: ObservableObject {
 		fetchNowplaying()
 	}
 	
+	private let constants = Constants.shared
+	
 	func fetchPopular() {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=5a47d30884f0c53a62a7eaa4f26a6973&language=fr-FR")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(constants.apiKey)&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
@@ -56,7 +58,7 @@ class HomeViewModel: ObservableObject {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=5a47d30884f0c53a62a7eaa4f26a6973&language=fr-FR")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=\(constants.apiKey)&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
@@ -89,7 +91,7 @@ class HomeViewModel: ObservableObject {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=5a47d30884f0c53a62a7eaa4f26a6973&language=fr-FR")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(constants.apiKey)&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
