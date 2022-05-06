@@ -67,12 +67,18 @@ struct DetailView: View {
 					}
 					.padding(.bottom)
 					HStack {
-						Text("⌚️ \(String(vm.movie?.runtime ?? 0))")
+						Text("⌚️ \(String((vm.movie?.runtime ?? 1) / 60))h\(String((vm.movie?.runtime ?? 2) % 60))")
 							.padding(.leading, 20)
 						Spacer()
 						Text("📆 \(vm.movie?.releaseDate ?? "Loading...")")
 							.padding(.trailing, 20)
 					}.padding(.bottom)
+					
+					HStack {
+						Text(String(vm.movie?.status ?? "Loading..."))
+							.padding(.leading, 20)
+						Spacer()
+					}
 					
 					HStack {
 			
@@ -110,7 +116,7 @@ struct DetailView: View {
 			.edgesIgnoringSafeArea(.all)
 		}.onAppear {
 			vm.getMovie(id)
-			vm.fetchMovies()
+//			vm.fetchMovies()
 		   }
 	}
 	

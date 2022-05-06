@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ProfileView: View {
-    var body: some View {
-        Text("Coming soon....")
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
+	var body: some View {
+		VStack {
+			Text("Coming soon....")
+			Image("Icon")
+				.resizable()
+				.frame(width: 140, height: 140, alignment: .center)
+		}
+	}
 }

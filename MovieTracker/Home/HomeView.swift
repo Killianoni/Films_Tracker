@@ -104,10 +104,10 @@ struct HomeView: View {
 											ProgressView()
 												.progressViewStyle(.circular)
 										}
-										.frame(width: 160, height: 200)
+										.frame(width: 140, height: 200)
 										
 									})
-									.padding(.bottom, 20)
+									.cornerRadius(10)
 								}
 							}
 							.padding(.leading)
@@ -129,8 +129,8 @@ struct HomeView: View {
 	}
 }
 
-struct HomeView_Previews: PreviewProvider {
-	static var previews: some View {
-		HomeView()
-	}
-}
+//struct HomeView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		HomeView()
+//	}
+//}
