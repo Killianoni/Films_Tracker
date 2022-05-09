@@ -25,6 +25,7 @@
 		1D551B0327FDBAA100B23E17 /* MyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D551B0227FDBAA100B23E17 /* MyListViewModel.swift */; };
 		1D551B0527FDBABB00B23E17 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D551B0427FDBABB00B23E17 /* ProfileViewModel.swift */; };
 		1D9066AF28251D40003F6832 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9066AE28251D40003F6832 /* Constants.swift */; };
+		1D9066B228252F17003F6832 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1D9066B128252F17003F6832 /* CachedAsyncImage */; };
 		1DF4A0F8281DB8650020395E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0F7281DB8650020395E /* DetailViewModel.swift */; };
 		1DF4A0FA281DB86F0020395E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0F9281DB86F0020395E /* DetailView.swift */; };
 		1DF4A0FC281DE8570020395E /* SingleMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4A0FB281DE8570020395E /* SingleMovieModel.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9066B228252F17003F6832 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +217,7 @@
 			);
 			name = MovieTracker;
 			packageProductDependencies = (
+				1D9066B128252F17003F6832 /* CachedAsyncImage */,
 			);
 			productName = MovieTracker;
 			productReference = 1D013D0227D8A19C00032343 /* MovieTracker.app */;
@@ -245,6 +248,7 @@
 			);
 			mainGroup = 1D013CF927D8A19C00032343;
 			packageReferences = (
+				1D9066B028252F17003F6832 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			productRefGroup = 1D013D0327D8A19C00032343 /* Products */;
 			projectDirPath = "";
@@ -499,6 +503,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D9066B028252F17003F6832 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D9066B128252F17003F6832 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D9066B028252F17003F6832 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1D013D1027D8A19E00032343 /* MovieTracker.xcdatamodeld */ = {

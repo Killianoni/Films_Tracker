@@ -7,14 +7,20 @@
 
 import SwiftUI
 
-struct SearchView: View {	
+struct SearchView: View {
+	@StateObject private var vm = SearchViewModel()
+	@State private var searchText: String = ""
+	
 	var body: some View {
-		
-		VStack {
-			Text("Coming soon....")
-			Image("Icon")
-				.resizable()
-				.frame(width: 140, height: 140, alignment: .center)
+		NavigationView {
+			//			List(vm.searchResult) { movie in
+			//			Text(movie.title)
+			//			}.listStyle(.plain)
+			//				.searchable(text: $searchText)
+			//				.onChange(of: searchText) { value in
+			//					print(value)
+			//
+			//		}
 		}
 	}
 }
