@@ -16,11 +16,13 @@ class DetailViewModel: ObservableObject {
 	@Published var isFavorite: Bool = true
 	@Published var favMovies = [Movie]()
 
+	private let constants = Constants.shared
+	
 	func getMovie(_ id: String) {
 		
 		let session = URLSession.shared
 		
-		guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=70d695698e1725917ed1fa6d935de2e5&language=fr-FR")
+		guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(constants.apiKey)&language=fr-FR")
 		else { return }
 		
 		var request = URLRequest(url: url)
@@ -59,20 +61,21 @@ class DetailViewModel: ObservableObject {
 		}
 	}
 	
-	func deleteSong(with deleteMovieId: NSManagedObjectID) {
-		let res = DBManager.shared.deleteMovie(by: deleteMovieId)
-		switch res {
-		case .success:
-			favMovies = favMovies.filter { $0.objectID  != deleteMovieId }
-		case .failure: return
-		}
-	}
+//	func deleteSong(with deleteMovieId: NSManagedObjectID) {
+//		let res = DBManager.shared.deleteMovie(by: deleteMovieId)
+//		switch res {
+//		case .success:
+//			favMovies = favMovies.filter { $0.objectID  != deleteMovieId }
+//		case .failure: return
+//		}
+//	}
 	
-	func fetchMovies() {
-		let moviesResult = DBManager.shared.getMovies(shouldFetchOnlyFavs: true)
-		switch moviesResult {
-		case .failure:               return
-		case .success(let movies):   self.favMovies = movies
-		}
-	}
+//	func fetchMovies() {
+//		let moviesResult = DBManager.shared.getMovies(shouldFetchOnlyFavs: true)
+//		switch moviesResult {
+//		case .failure:               return
+//		case .success(let movies):   self.favMovies = movies
+//		}
+//	}
+	
 }

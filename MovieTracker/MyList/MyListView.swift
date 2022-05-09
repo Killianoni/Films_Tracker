@@ -17,28 +17,27 @@ struct MyListView: View {
 	var body: some View {
 		NavigationView {
 			ZStack {
-				Color(UIColor(white: 0.05, alpha: 0.1))
-					.edgesIgnoringSafeArea(.all)
 				ScrollView {
-					VStack {
-						LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
-							ForEach(vm.favMovies) { movie in
-								Button {
-									vm.deleteSong(with: movie.objectID)
-								} label: {
-									AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster ?? "Unknown")"), scale: 2) { image in
-										image
-											.resizable()
-											.aspectRatio(contentMode: .fit)
-									} placeholder: {
-										ProgressView()
-											.progressViewStyle(.circular)
-									}
-									.frame(width: 100, height: 170)
-
+					Color(UIColor(white: 0.05, alpha: 0.1))
+						.edgesIgnoringSafeArea(.all)
+					LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
+						ForEach(vm.favMovies) { movie in
+							Button {
+								vm.deleteSong(with: movie.objectID)
+							} label: {
+								AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster ?? "Unknown")"), scale: 2) { image in
+									image
+										.resizable()
+										.aspectRatio(contentMode: .fit)
+										.cornerRadius(8)
+								} placeholder: {
+									ProgressView()
+										.progressViewStyle(.circular)
 								}
-								.cornerRadius(10)
+								.frame(width: 130, height: 160)
+								
 							}
+							
 						}
 						.padding(.bottom, 20)
 					}

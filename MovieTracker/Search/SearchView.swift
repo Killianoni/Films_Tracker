@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct SearchView: View {
-	@State private var searchText = ""
+	@StateObject private var vm = SearchViewModel()
+	@State private var searchText: String = ""
 	
 	var body: some View {
 		NavigationView {
-			Color(UIColor(white: 0.05, alpha: 1))
-				.edgesIgnoringSafeArea(.all)
-			Text(searchText)
+			//			List(vm.searchResult) { movie in
+			//			Text(movie.title)
+			//			}.listStyle(.plain)
+			//				.searchable(text: $searchText)
+			//				.onChange(of: searchText) { value in
+			//					print(value)
+			//
+			//		}
 		}
-		.searchable(text: $searchText)
-	}
-}
-
-struct SearchView_Previews: PreviewProvider {
-	static var previews: some View {
-		SearchView()
 	}
 }

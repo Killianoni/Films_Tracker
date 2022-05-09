@@ -98,7 +98,8 @@ struct HomeView: View {
 										AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "Unknown")"), scale: 2) { image in
 											image
 												.resizable()
-												.aspectRatio(contentMode: .fit)
+												.aspectRatio(contentMode: .fill)
+												.cornerRadius(8)
 										} placeholder: {
 											ProgressView()
 												.progressViewStyle(.circular)
@@ -107,21 +108,22 @@ struct HomeView: View {
 										
 									})
 									.cornerRadius(10)
-									.padding(.bottom, 20)
 								}
 							}
 							.padding(.leading)
 						}
 					}
+					.padding(.top, 40)
+					.padding(.bottom, 40)
 				}
-				.padding(.top, 40)
+//				.padding(.top, 40)
 			}
 			.onAppear {
 				vm.fetchPopular()
 				vm.fetchTopRated()
 				vm.fetchNowplaying()
 			}
-			.navigationBarTitle("", displayMode: .inline)
+			.navigationBarTitle("Home", displayMode: .inline)
 			.navigationBarHidden(true)
 			.navigationBarBackButtonHidden(true)
 		}
@@ -129,8 +131,8 @@ struct HomeView: View {
 	}
 }
 
-struct HomeView_Previews: PreviewProvider {
-	static var previews: some View {
-		HomeView()
-	}
-}
+//struct HomeView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		HomeView()
+//	}
+//}
